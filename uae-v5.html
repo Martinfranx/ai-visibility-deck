@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Found. Shown. Chosen. | UAE Commercial v4 | October 2026</title>
+<style>
+:root{
+  --bg:#07050d; --bg2:#130b22; --purple:#A100FF; --violet:#6a00b3; --pink:#FF50A0; --lav:#DCAFFF; --lav2:#F4ECFF;
+  --ink:#0d0a14; --mut:#8d84a0; --mutd:#6b6380;
+  --grad:linear-gradient(120deg,#A100FF 0%,#D14DFF 55%,#FF50A0 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#000;font-family:Graphik,"Helvetica Neue",Arial,sans-serif;color:#fff;overflow:hidden;-webkit-font-smoothing:antialiased}
+#stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;isolation:isolate;display:none;overflow:hidden;padding:58px 76px 60px;background:var(--bg)}
+.slide.active{display:block}
+.slide.dark{background:radial-gradient(1000px 600px at 85% -10%,#2a0f4d 0%,transparent 60%),radial-gradient(800px 500px at -10% 110%,#3a0a3f 0%,transparent 60%),var(--bg);color:#fff}
+.slide.light{background:radial-gradient(900px 500px at 100% 0%,#EBD9FF 0%,transparent 60%),radial-gradient(700px 500px at 0% 100%,#FFE3F0 0%,transparent 55%),#fbf8ff;color:var(--ink)}
+.orb{position:absolute;z-index:-1;border-radius:50%;filter:blur(2px);pointer-events:none}
+.o1{width:640px;height:640px;right:-160px;top:-140px;background:radial-gradient(circle at 35% 35%,#E27BFF 0%,#A100FF 38%,#4b0085 62%,transparent 72%);animation:float 12s ease-in-out infinite}
+.o2{width:380px;height:380px;right:260px;bottom:-190px;background:radial-gradient(circle at 40% 40%,#FF7FBC 0%,#FF50A0 35%,transparent 70%);opacity:.55;animation:float 15s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-26px,22px)}}
+.kicker{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.kicker:before{content:"";width:34px;height:2px;background:var(--grad)}
+.dark .kicker{color:var(--lav)} .light .kicker{color:var(--purple)}
+h1{font-size:112px;line-height:.92;font-weight:600;letter-spacing:-.04em}
+h2{font-size:40px;line-height:1.1;font-weight:600;letter-spacing:-.025em;max-width:1000px;margin-bottom:30px}
+h3{font-size:20px;font-weight:600;letter-spacing:-.01em}
+p{font-size:17px;line-height:1.45}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.dark p{color:#cfc6e0}.light p{color:#3a3350}
+.ft{position:absolute;left:76px;right:76px;bottom:22px;display:flex;gap:24px;font-size:11.5px;letter-spacing:.04em}
+.ft .pg{margin-left:auto}
+.dark .ft{color:#7d7493}.light .ft{color:#9890ad}
+.fn{color:var(--pink);font-weight:700}
+.note{font-size:11.5px}
+.dark .note{color:#8d84a0}.light .note{color:#8a819f}
+/* reveal */
+.r{opacity:0;transform:translateY(20px)}
+.slide.active .r{animation:rise .75s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--d,0s)}
+@keyframes rise{to{opacity:1;transform:none}}
+.static .r{opacity:1!important;transform:none!important;animation:none!important}
+/* cards */
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.12);border-radius:18px;backdrop-filter:blur(10px)}
+.paper{background:#fff;border-radius:18px;box-shadow:0 18px 50px rgba(120,40,200,.12),0 1px 0 rgba(0,0,0,.04)}
+.grid{display:grid;gap:20px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.ic{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.icb{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:var(--grad);color:#fff;box-shadow:0 10px 30px rgba(161,0,255,.4)}
+.icb .ic{width:26px;height:26px}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:30px;background:rgba(161,0,255,.14);color:var(--purple)}
+.dark .pill{background:rgba(220,175,255,.14);color:var(--lav)}
+.pill .fn{margin-left:-5px}
+.pill.pk{background:rgba(255,80,160,.15);color:var(--pink)}
+.callout{border-radius:14px;padding:14px 18px;font-size:15.5px;display:flex;gap:12px;align-items:flex-start}
+.dark .callout{background:rgba(255,80,160,.12);border:1px solid rgba(255,80,160,.4);color:#ffd0e5}
+.dark .callout.ok{background:rgba(161,0,255,.18);border:1px solid rgba(220,175,255,.45);color:#f3e8ff}
+.light .callout{background:#fff0f6;border:1px solid #ffc2da;color:#7a1c47}
+.sowhat{position:absolute;left:76px;right:76px;bottom:52px;padding:16px 24px;border-radius:14px;font-size:17px;display:flex;gap:14px;align-items:center}
+.dark .sowhat{background:linear-gradient(90deg,rgba(161,0,255,.35),rgba(255,80,160,.18));border:1px solid rgba(220,175,255,.3);color:#fff}
+.light .sowhat{background:var(--grad);color:#fff}
+.sowhat b{letter-spacing:.12em;text-transform:uppercase;font-size:12px;opacity:.85}
+/* chat mock */
+.win{background:#0f0b18;border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:18px 20px 22px;box-shadow:0 40px 90px rgba(161,0,255,.35),0 0 0 1px rgba(255,255,255,.03) inset;color:#fff}
+.win .tb{display:flex;gap:6px;margin-bottom:16px;align-items:center}
+.win .tb i{width:10px;height:10px;border-radius:50%;background:#2c2540;display:block}
+.win .tb span{margin-left:auto;font-size:10.5px;letter-spacing:.14em;color:#7a7191;text-transform:uppercase}
+.mu{margin-left:auto;width:fit-content;max-width:82%;background:linear-gradient(135deg,#A100FF,#6a00b3);padding:11px 16px;border-radius:16px 16px 4px 16px;font-size:14.5px;color:#fff}
+.ma{display:flex;gap:12px;margin-top:14px}
+.av{width:30px;height:30px;border-radius:50%;background:conic-gradient(from 90deg,#A100FF,#FF50A0,#DCAFFF,#A100FF);flex:none}
+.ma .bd{font-size:14px;color:#d8d0e6;line-height:1.45;flex:1}
+.rk{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 14px;margin-top:8px;font-size:14px;color:#fff}
+.rk .n{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+.rk .c{margin-left:auto;font-size:10.5px;padding:2px 8px;border-radius:8px;background:rgba(161,0,255,.4);color:#ecd6ff;white-space:nowrap}
+.rk.you{border:1.5px dashed var(--pink);background:rgba(255,80,160,.08);color:#ffb3d6;animation:pulse 2.4s ease-in-out infinite}
+.rk.you .n{background:var(--pink);color:#fff}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,80,160,.0)}50%{box-shadow:0 0 0 7px rgba(255,80,160,.14)}}
+.ill{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8d84a0;margin-top:10px;text-align:right}
+.spons{margin-top:12px;background:#fff;color:#14101e;border-radius:14px;overflow:hidden;display:flex}
+.spons .im{width:112px;background:var(--grad);flex:none;display:grid;place-items:center;color:#fff}
+.spons .tx{padding:12px 16px;flex:1}
+.spons .sp{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#7a7191;font-weight:700}
+.spons b{display:block;font-size:15px;margin:3px 0 2px}
+.spons span.d{font-size:13px;color:#4a4260}
+.spons .btn{display:inline-block;margin-top:8px;background:#14101e;color:#fff;font-size:12px;padding:6px 14px;border-radius:20px}
+/* stats */
+.stat{padding:30px 28px 26px;position:relative;overflow:hidden;height:270px}
+.num{font-size:84px;line-height:1;font-weight:600;letter-spacing:-.04em}
+.lbl{font-size:16px;color:#cfc6e0;margin-top:14px;line-height:1.35;max-width:200px}
+.ring{position:absolute;right:24px;bottom:22px;width:104px;height:104px}
+.ring circle{fill:none;stroke-width:9}
+.ring .bg{stroke:rgba(255,255,255,.08)}
+.ring .fg{stroke:url(#gr);stroke-linecap:round;stroke-dasharray:314;stroke-dashoffset:314;transition:stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1) .5s}
+.slide.active .ring .fg{stroke-dashoffset:var(--off)}
+.static .ring .fg{stroke-dashoffset:var(--off)!important;transition:none}
+.rip{position:absolute;right:46px;bottom:44px;width:60px;height:60px}
+.rip i{position:absolute;inset:0;border-radius:50%;border:2px solid var(--pink);opacity:0;animation:rip 3s infinite}
+.rip i:nth-child(2){animation-delay:1s}.rip i:nth-child(3){animation-delay:2s}
+@keyframes rip{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+.cmp{margin-top:36px}
+.cmp .row{display:flex;align-items:center;gap:16px;margin:10px 0;font-size:14px;color:#cfc6e0}
+.cmp .row .nm{width:230px}
+.cmp .trk{flex:1;height:34px;border-radius:10px;background:rgba(255,255,255,.07);overflow:hidden}
+.cmp .fill{height:100%;width:0;border-radius:10px;display:flex;align-items:center;justify-content:flex-end;padding-right:14px;font-weight:600;font-size:15px;transition:width 1.4s cubic-bezier(.2,.7,.2,1) .7s}
+.slide.active .fill{width:var(--w)}
+.static .fill{width:var(--w)!important;transition:none}
+.f1{background:rgba(220,175,255,.35)}.f2{background:var(--grad)}
+/* journey */
+.jr{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;position:relative;margin-top:6px}
+.jc{padding:28px 28px 26px;height:390px;position:relative;overflow:hidden}
+.jc .big{font-size:58px;font-weight:600;letter-spacing:-.035em;line-height:1;margin:22px 0 10px}
+.jc .nx{position:absolute;right:20px;top:14px;font-size:90px;font-weight:700;color:rgba(255,255,255,.05);letter-spacing:-.05em}
+.jc .kp{position:absolute;left:28px;right:28px;bottom:24px;border-top:1px solid rgba(255,255,255,.14);padding-top:14px;font-size:13px;color:#b7acd0}
+.jc .kp b{display:block;color:#fff;font-size:15px;margin-top:3px}
+.jc.a{background:linear-gradient(165deg,rgba(106,0,179,.55),rgba(255,255,255,.03))}
+.jc.b{background:linear-gradient(165deg,rgba(161,0,255,.55),rgba(255,255,255,.03))}
+.jc.c{background:linear-gradient(165deg,rgba(255,80,160,.5),rgba(161,0,255,.12))}
+.arrow{position:absolute;top:50%;width:36px;height:36px;border-radius:50%;background:#fff;color:var(--purple);display:grid;place-items:center;z-index:3;box-shadow:0 8px 24px rgba(0,0,0,.4);transform:translateY(-50%)}
+.arrow .ic{width:18px;height:18px;stroke-width:2.4}
+/* lists */
+.lst{list-style:none}
+.lst li{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;font-size:16.5px;line-height:1.4}
+.lst li .dot{width:26px;height:26px;border-radius:8px;background:var(--grad);flex:none;display:grid;place-items:center;color:#fff;margin-top:1px}
+.lst li .dot .ic{width:15px;height:15px;stroke-width:2.6}
+.lst b{display:block;font-size:17px}
+.light .lst li{color:#3a3350}.light .lst b{color:var(--ink)}
+.dark .lst li{color:#cfc6e0}.dark .lst b{color:#fff}
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{padding:9px 16px;border-radius:30px;font-size:14px;font-weight:600;border:1px solid rgba(255,255,255,.22);color:#efe6ff;background:rgba(255,255,255,.05)}
+.light .chip{border-color:#d9c3f5;color:var(--violet);background:#fff}
+/* flow */
+.flow{display:flex;align-items:stretch;gap:0;margin:8px 0 26px}
+.node{flex:1;padding:22px 20px;text-align:center;border-radius:18px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.node .ic{width:34px;height:34px;margin-bottom:10px}
+.node b{display:block;font-size:17px}.node span{font-size:13px;opacity:.75}
+.node.hl{background:var(--grad);color:#fff;box-shadow:0 20px 50px rgba(161,0,255,.35)}
+.node.hl span{opacity:.9}
+.link{align-self:center;width:46px;height:2px;background:repeating-linear-gradient(90deg,#A100FF 0 6px,transparent 6px 12px);flex:none;position:relative}
+.link:after{content:"";position:absolute;right:-1px;top:-4px;border-left:8px solid #A100FF;border-top:5px solid transparent;border-bottom:5px solid transparent}
+/* matrix */
+.mx{display:grid;grid-template-columns:230px repeat(3,1fr);gap:12px}
+.mx .h{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--lav);padding:0 6px 4px;display:flex;align-items:flex-end;gap:8px}
+.mx .h .ic{width:18px;height:18px}
+.mx .v{font-size:19px;font-weight:600;display:flex;align-items:center;padding:0 6px}
+.mx .cell{border-radius:16px;padding:18px 20px;min-height:116px;display:flex;flex-direction:column;justify-content:space-between}
+.mx .cell small{font-size:13px;line-height:1.35;color:#e8dcff}
+.lv{display:flex;gap:6px;margin-bottom:8px}
+.lv i{width:22px;height:8px;border-radius:5px;background:rgba(255,255,255,.2);display:block}
+.lv.l3 i,.lv.l2 i:nth-child(-n+2),.lv.l1 i:nth-child(1){background:#fff}
+.c3{background:linear-gradient(135deg,#A100FF,#FF50A0)}
+.c2{background:linear-gradient(135deg,rgba(161,0,255,.65),rgba(161,0,255,.3))}
+.c1{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+/* timeline */
+.tl{position:relative;margin-top:36px}
+.tl:before{content:"";position:absolute;left:0;right:0;top:26px;height:4px;border-radius:4px;background:var(--grad);opacity:.9}
+.tg{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative}
+.tn{position:relative}
+.tn .nd{width:56px;height:56px;border-radius:50%;background:#fff;border:4px solid var(--purple);display:grid;place-items:center;font-weight:700;color:var(--purple);font-size:20px;box-shadow:0 0 0 8px rgba(161,0,255,.15),0 10px 30px rgba(161,0,255,.35);position:relative;z-index:2}
+.tn .cd{margin-top:22px;padding:22px 22px 20px;min-height:200px}
+.tn .wk{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--purple);font-weight:700;margin-bottom:6px}
+.tn h3{font-size:24px;margin-bottom:8px;color:var(--ink)}
+.tn p{font-size:15px}
+.tn.last .nd{background:var(--grad);color:#fff;border-color:#fff}
+/* stack */
+.stack{display:flex;flex-direction:column;gap:12px;align-items:center}
+.layer{border-radius:16px;padding:20px 26px;display:flex;gap:18px;align-items:center}
+.layer .icb{width:46px;height:46px;border-radius:14px;flex:none;background:rgba(255,255,255,.18);box-shadow:none}
+.layer b{font-size:19px;display:block}
+.layer span{font-size:14px;opacity:.88}
+/* formula */
+.fm{display:flex;align-items:stretch;gap:14px}
+.fb{flex:1;border-radius:18px;padding:22px 20px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.fb b{font-size:19px;line-height:1.2}.fb span{font-size:13px;color:var(--mutd)}
+.fb .ic{width:30px;height:30px;margin:0 auto 6px;color:var(--purple)}
+.fb.res{background:var(--grad);color:#fff;box-shadow:0 20px 50px rgba(161,0,255,.4)}
+.fb.res span{color:#fbe6ff}.fb.res .ic{color:#fff}
+.op{align-self:center;font-size:34px;font-weight:600;color:var(--purple)}
+.chart{padding:18px 22px}
+/* why / next */
+.big3{padding:32px 30px;min-height:340px}
+.big3 h3{font-size:24px;margin:20px 0 10px}
+.step{padding:28px;min-height:230px;position:relative}
+.step .no{font-size:70px;font-weight:600;letter-spacing:-.04em;line-height:1}
+.cta{display:inline-flex;align-items:center;gap:12px;background:var(--grad);color:#fff;padding:16px 30px;border-radius:40px;font-size:18px;font-weight:600;box-shadow:0 20px 50px rgba(161,0,255,.5)}
+/* cover */
+.fl{position:absolute;padding:20px 24px;display:flex;align-items:center;gap:16px;min-width:300px;animation:bob 6s ease-in-out infinite}
+.fl b{font-size:22px;display:block}.fl span{font-size:13px;color:#cfc6e0}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+/* nav */
+#bar{position:fixed;left:0;top:0;height:3px;background:var(--grad);width:0;z-index:9;transition:width .3s}
+#hint{position:fixed;bottom:8px;right:14px;color:#6c6580;font-size:11px;z-index:9}
+@media print{
+  html,body{overflow:visible;background:#fff}
+  #stage{position:static;transform:none!important;width:auto;height:auto}
+  .slide{display:block!important;position:relative;width:1280px;height:720px;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .r{opacity:1!important;transform:none!important;animation:none!important}
+  .fill{width:var(--w)!important}.ring .fg{stroke-dashoffset:var(--off)!important}
+  #bar,#hint{display:none}
+  @page{size:1280px 720px;margin:0}
+}
+
+#lang{position:fixed;top:12px;right:16px;z-index:20;display:flex;align-items:center;background:rgba(20,14,32,.72);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:30px;padding:3px}
+#lang button{font:600 12px Arial,sans-serif;letter-spacing:.08em;color:#cfc6e0;background:none;border:0;border-radius:24px;padding:6px 13px;cursor:pointer}
+#lang button.on{background:linear-gradient(120deg,#A100FF,#FF50A0);color:#fff}
+#lang .sep{width:1px;height:16px;background:rgba(255,255,255,.22);margin:0 4px}
+#lang #pdf:hover{color:#fff}
+html[lang=es] h1{font-size:92px}
+html[lang=es] h2{font-size:37px}
+@media print{#lang{display:none}}
+</style>
+</head>
+<body>
+<div id="lang"><button data-l="en">EN</button><button data-l="es">ES</button><span class="sep"></span><button id="pdf" title="Export to PDF (opens the print dialog: choose Save as PDF)">PDF ↓</button></div><svg height="0" style="position:absolute" width="0">
+<defs><lineargradient id="gr" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#A100FF"></stop><stop offset="1" stop-color="#FF50A0"></stop></lineargradient></defs>
+<symbol id="i-search" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5L21 21"></path></symbol>
+<symbol id="i-mega" viewbox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l6 4V5L6 9H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></symbol>
+<symbol id="i-bag" viewbox="0 0 24 24"><path d="M5 8h14l1 12H4L5 8z"></path><path d="M9 8a3 3 0 0 1 6 0"></path></symbol>
+<symbol id="i-spark" viewbox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path><path d="M19 16l.7 1.8L21.5 18.5l-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z"></path></symbol>
+<symbol id="i-chart" viewbox="0 0 24 24"><path d="M4 20V4M4 20h16"></path><path d="M8 15l4-4 3 3 5-6"></path></symbol>
+<symbol id="i-layers" viewbox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"></path><path d="M3 13l9 5 9-5"></path></symbol>
+<symbol id="i-check" viewbox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"></path></symbol>
+<symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></symbol>
+<symbol id="i-user" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1-4 4-6 8-6s7 2 8 6"></path></symbol>
+<symbol id="i-lock" viewbox="0 0 24 24"><rect height="9" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></symbol>
+<symbol id="i-store" viewbox="0 0 24 24"><path d="M4 9l1.5-5h13L20 9"></path><path d="M4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0A2.7 2.7 0 0 0 20 9"></path><path d="M5 12v8h14v-8"></path></symbol>
+<symbol id="i-target" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.2"></circle></symbol>
+<symbol id="i-cursor" viewbox="0 0 24 24"><path d="M5 3l14 7-6 2-2 6z"></path></symbol>
+<symbol id="i-data" viewbox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"></ellipse><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path></symbol>
+</svg>
+<div id="bar"></div>
+
+<div id="stage">
+<section class="slide dark">
+<div class="orb o1"></div><div class="orb o2"></div>
+<div style="position:absolute;left:76px;top:150px">
+<div class="kicker r" style="--d:.1s">AI visibility · Go-to-market</div>
+<h1 class="r" style="--d:.2s">Found.<br/>Shown.<br/><span class="grad">Chosen.</span></h1>
+<p class="r" style="--d:.4s;font-size:21px;margin-top:28px;max-width:520px">A practical growth offer for UAE brands navigating AI discovery, paid visibility and commerce readiness.</p>
+</div>
+<div class="fl glass r" style="right:90px;top:170px;--d:.5s"><div class="icb"><svg class="ic"><use href="#i-search"></use></svg></div><div><b>GEO</b><span>Be cited in AI answers</span></div></div>
+<div class="fl glass r" style="right:150px;top:300px;--d:.65s;animation-delay:-2s"><div class="icb"><svg class="ic"><use href="#i-mega"></use></svg></div><div><b>Ads in AI</b><span>Be shown in the moment</span></div></div>
+<div class="fl glass r" style="right:70px;top:430px;--d:.8s;animation-delay:-4s"><div class="icb"><svg class="ic"><use href="#i-bag"></use></svg></div><div><b>Agentic commerce</b><span>Be chosen by the agent</span></div></div>
+<div class="ft"><span>October 2026 · UAE edition</span></div>
+</section>
+<!-- 2 EXEC SUMMARY -->
+
+<section class="slide dark">
+<div class="kicker r">Executive summary</div>
+<h2 class="r" style="--d:.1s">Discovery is moving into AI assistants. Brands have three levers to act on it.</h2>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div class="glass r" style="--d:.25s;display:flex;align-items:center;gap:26px;padding:20px 28px"><div class="grad" style="font-size:54px;font-weight:700;width:60px;line-height:1">S</div><div><h3>Situation</h3><p>ChatGPT, Gemini and AI Overviews answer the question before the user reaches your site.</p></div></div>
+<div class="glass r" style="--d:.4s;display:flex;align-items:center;gap:26px;padding:20px 28px"><div class="grad" style="font-size:54px;font-weight:700;width:60px;line-height:1">C</div><div><h3>Complication</h3><p>A brand missing from the answer loses consideration, and no current report shows it.</p></div></div>
+<div class="glass r" style="--d:.55s;display:flex;align-items:center;gap:26px;padding:20px 28px"><div class="grad" style="font-size:54px;font-weight:700;width:60px;line-height:1">R</div><div><h3>Resolution</h3><p>Three linked services: GEO (organic), ads in AI (paid), agentic commerce (transaction).</p></div></div>
+</div>
+<div class="sowhat r" style="--d:.8s"><b>The ask</b> A 4-week AI visibility diagnostic: baseline, priorities and a pilot plan.</div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">2</span></div>
+</section>
+<!-- 3 SITUATION -->
+
+<section class="slide dark">
+<div class="kicker r">The market signal</div>
+<h2 class="r" style="--d:.1s">AI is becoming a new layer of customer discovery</h2>
+<div class="grid g3">
+  <div class="glass stat r" style="--d:.2s"><div class="rip"><i></i><i></i><i></i></div><div class="num grad">1.2B+<span class="fn" style="font-size:30px">*</span></div><div class="lbl">weekly ChatGPT users, reported by OpenAI (Sep 2026)</div></div>
+  <div class="glass stat r" style="--d:.35s"><svg class="ring" viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="fg" cx="60" cy="60" r="50" transform="rotate(-90 60 60)" style="--off:258"/></svg><div class="num grad">18%</div><div class="lbl">of Google searches in a 2025 US research panel produced an AI summary</div></div>
+  <div class="glass stat r" style="--d:.5s"><svg class="ring" viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="fg" cx="60" cy="60" r="50" transform="rotate(-90 60 60)" style="--off:311"/></svg><div class="num grad">~1%<span class="fn" style="font-size:30px">*</span></div><div class="lbl">of website traffic comes from AI referrals today: small volume, large influence</div></div>
+</div>
+<div class="cmp r" style="--d:.7s">
+  <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--lav);margin-bottom:6px">Clicks on a classic result · Pew Research, US, March 2025</div>
+  <div class="row"><div class="nm">Without an AI summary</div><div class="trk"><div class="fill f1" style="--w:100%">15%</div></div></div>
+  <div class="row"><div class="nm">With an AI summary</div><div class="trk"><div class="fill f2" style="--w:53%">8%</div></div></div>
+</div>
+<div class="ft"><span class="note"><span class="fn">*</span> Secondary sources. All figures are global or US data, not UAE audience estimates. Sources on the evidence slide.</span><span class="pg">3</span></div>
+</section>
+<section class="slide dark">
+<div class="orb" style="width:520px;height:520px;left:-200px;bottom:-260px;background:radial-gradient(circle,#A100FF 0%,transparent 65%);opacity:.5"></div>
+<div style="display:grid;grid-template-columns:1fr 520px;gap:50px;align-items:start">
+<div>
+<div class="kicker r">Complication</div>
+<h2 class="r" style="--d:.1s;font-size:42px">AI shortlists a handful of brands. Is yours one of them?</h2>
+<ul class="lst r" style="--d:.3s">
+<li><span class="dot"><svg class="ic"><use href="#i-chart"></use></svg></span><div><b>Invisible in reporting</b>GA4 and Search Console do not show mentions or citations inside LLMs.</div></li>
+<li><span class="dot"><svg class="ic"><use href="#i-layers"></use></svg></span><div><b>Sources you do not control</b>Reviews, forums, media and Wikipedia feed the answer, and sit outside the brand content plan.</div></li>
+<li><span class="dot"><svg class="ic"><use href="#i-target"></use></svg></span><div><b>Competitors already there</b>Competitors and aggregators occupy the answers you want.</div></li>
+</ul>
+</div>
+<div class="r" style="--d:.35s;margin-top:14px">
+<div class="win">
+<div class="tb"><i></i><i></i><i></i><span>AI assistant</span></div>
+<div class="mu">Which brand should I trust for this?</div>
+<div class="ma"><div class="av"></div><div class="bd">Based on reviews and recent sources, these stand out:
+          <div class="rk"><span class="n">1</span>Brand A<span class="c">3 sources</span></div>
+<div class="rk"><span class="n">2</span>Brand B<span class="c">2 sources</span></div>
+<div class="rk"><span class="n">3</span>Brand C<span class="c">2 sources</span></div>
+<div class="rk you"><span class="n">?</span>Your brand: not mentioned</div>
+</div></div>
+<div class="ill">Illustrative</div>
+</div>
+</div>
+</div>
+<div class="sowhat r" style="--d:.7s"><b>So what</b> A measurement gap and lost consideration at the top of the funnel.</div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">4</span></div>
+</section>
+<!-- 5 FRAMEWORK -->
+
+<section class="slide dark">
+<div class="kicker r">The framework</div>
+<h2 class="r" style="--d:.1s">Three services cover the full journey inside AI</h2>
+<div class="jr">
+<div class="glass jc a r" style="--d:.25s"><div class="nx">01</div><div class="icb"><svg class="ic"><use href="#i-search"></use></svg></div><div class="big">Found</div><h3>GEO</h3><p style="margin-top:8px">Appear and be cited in organic AI answers.</p><div class="kp">Primary KPI<b>Prompt-set visibility, recommendation and citation rates</b></div></div>
+<div class="glass jc b r" style="--d:.4s"><div class="nx">02</div><div class="icb"><svg class="ic"><use href="#i-mega"></use></svg></div><div class="big">Shown</div><h3>Ads in AI</h3><p style="margin-top:8px">Pay for presence in high-intent moments.</p><div class="kp">Primary KPI<b>CPC / CPA, leads</b></div></div>
+<div class="glass jc c r" style="--d:.55s"><div class="nx">03</div><div class="icb"><svg class="ic"><use href="#i-bag"></use></svg></div><div class="big">Chosen</div><h3>Agentic commerce</h3><p style="margin-top:8px">Let an agent compare and buy your product.</p><div class="kp">Primary KPI<b>Orders or leads via agent</b></div></div>
+<div class="arrow" style="left:calc(33.3% - 31px)"><svg class="ic"><use href="#i-arrow"></use></svg></div>
+<div class="arrow" style="left:calc(66.6% - 5px)"><svg class="ic"><use href="#i-arrow"></use></svg></div>
+</div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">5</span></div>
+</section>
+<!-- 6 GEO -->
+
+<section class="slide light">
+<div class="kicker r">Service 1 · GEO</div>
+<h2 class="r" style="--d:.1s;max-width:1100px">GEO turns content and brand signals into citations inside AI answers</h2>
+<div style="display:grid;grid-template-columns:1fr 500px;gap:46px">
+<div>
+<ul class="lst r" style="--d:.25s">
+<li><span class="dot"><svg class="ic"><use href="#i-target"></use></svg></span><div><b>Diagnose</b>Share of voice by prompt, engine, market and competitor (100–300 prompt set), plus a map of the domains LLMs cite in your category.</div></li>
+<li><span class="dot"><svg class="ic"><use href="#i-spark"></use></svg></span><div><b>Optimise</b>Content built for extraction: direct answers, FAQs, own data, schema. Technical access for AI crawlers and structured data.</div></li>
+<li><span class="dot"><svg class="ic"><use href="#i-chart"></use></svg></span><div><b>Build and track</b>Authority on the third-party sites models rely on. Monthly visibility dashboard plus AI referral traffic in GA4.</div></li>
+</ul>
+</div>
+<div class="r" style="--d:.4s">
+<div class="win">
+<div class="tb"><i></i><i></i><i></i><span>After GEO</span></div>
+<div class="mu">Which brand should I trust for this?</div>
+<div class="ma"><div class="av"></div><div class="bd">Your brand is recommended for its clear product data and independent reviews.
+          <div class="rk"><span class="n" style="background:var(--grad)">1</span>Your brand<span class="c">brand site · reviews · media</span></div>
+<div class="rk"><span class="n">2</span>Brand A<span class="c">2 sources</span></div>
+<div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><span class="chip" style="font-size:11px;padding:5px 10px">[1] Brand site</span><span class="chip" style="font-size:11px;padding:5px 10px">[2] Review platform</span><span class="chip" style="font-size:11px;padding:5px 10px">[3] Trade media</span></div>
+</div></div>
+<div class="ill">Illustrative</div>
+</div>
+</div>
+</div>
+<div class="sowhat r" style="--d:.7s"><b>Evidence</b> <span>The Princeton GEO paper (arXiv 2311.09735, KDD 2024) reports up to +40% visibility from simple tactics. Academic basis, not a promise.</span></div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">6</span></div>
+</section>
+<!-- 7 ADS -->
+
+<section class="slide dark">
+<div class="orb" style="width:520px;height:520px;right:-180px;top:-200px;background:radial-gradient(circle,#A100FF 0%,transparent 65%);opacity:.55"></div>
+<div class="kicker r">Service 2 · Paid discovery</div>
+<h2 class="r" style="--d:.1s;max-width:1100px">ChatGPT Ads: a measurable channel, separate from organic recommendations</h2>
+<div style="display:grid;grid-template-columns:520px 1fr;gap:44px">
+  <div class="r" style="--d:.25s"><div class="win"><div class="tb"><i></i><i></i><i></i><span>AI assistant</span></div>
+    <div class="mu">What is the best option for me?</div>
+    <div class="ma"><div class="av"></div><div class="bd">Here are three things to compare before you decide…
+      <div class="spons"><div class="im"><svg class="ic" style="width:40px;height:40px"><use href="#i-spark"></use></svg></div><div class="tx"><div class="sp">Sponsored</div><b>Your brand: clear headline</b><span class="d">One line on the offer, matched to the question.</span><div><span class="btn">Learn more</span></div></div></div>
+    </div></div>
+    <div class="ill">Illustrative · sponsored card below the answer</div></div></div>
+  <div>
+    <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px">
+      <div class="glass r" style="--d:.4s;padding:18px 20px"><div class="num grad" style="font-size:40px">UAE</div><p style="font-size:13.5px;margin-top:4px">Listed in self-service Ads Manager, for UAE-established billing entities</p></div>
+      <div class="glass r" style="--d:.5s;padding:18px 20px"><div class="num grad" style="font-size:40px">AED 65</div><p style="font-size:13.5px;margin-top:4px">Daily minimum: a platform floor, not a test budget</p></div>
+      <div class="glass r" style="--d:.6s;padding:18px 20px"><div class="num grad" style="font-size:40px">4–6</div><p style="font-size:13.5px;margin-top:4px">Square images in multi-image format (open beta, 26 Oct 2026)</p></div>
+      <div class="glass r" style="--d:.7s;padding:18px 20px"><div class="num grad" style="font-size:40px">3</div><p style="font-size:13.5px;margin-top:4px">Objectives: reach, clicks or conversions; one destination URL</p></div>
+    </div>
+    <div class="callout r" style="--d:.85s;margin-top:16px"><svg class="ic" style="flex:none;margin-top:1px"><use href="#i-target"></use></svg><div><b>Still to validate</b> Account eligibility, UAE targeting granularity, category approval and language controls. Context hints are not exact-match keywords or hard targeting rules.</div></div>
+  </div>
+</div>
+<div class="sowhat r" style="--d:.95s"><b>So what</b> Ads do not alter ChatGPT answers. Run paid and organic as separate levers, each with its own measurement.</div>
+<div class="ft"><span class="note"><span class="fn">*</span> Source: OpenAI help center, verified 29 Oct 2026. Rules, formats and availability can change.</span><span class="pg">7</span></div>
+</section>
+<section class="slide light">
+<div class="kicker r">Service 3 · Agentic commerce</div>
+<h2 class="r" style="--d:.1s;max-width:1100px">Prepare products for AI-led discovery before promising agent checkout</h2>
+<div class="flow r" style="--d:.25s">
+  <div class="node paper"><svg class="ic" style="color:var(--purple)"><use href="#i-user"></use></svg><b>Shopper</b><span>States a need</span></div><div class="link"></div>
+  <div class="node paper"><svg class="ic" style="color:var(--purple)"><use href="#i-spark"></use></svg><b>AI agent</b><span>Compares and decides</span></div><div class="link"></div>
+  <div class="node paper"><svg class="ic" style="color:var(--purple)"><use href="#i-lock"></use></svg><b>Protocol layer</b><span>ACP · UCP · AP2 · TAP</span></div><div class="link"></div>
+  <div class="node hl"><svg class="ic"><use href="#i-store"></use></svg><b>Your catalogue and checkout</b><span>Where we work</span></div>
+</div>
+<div class="grid g3" style="margin-top:20px">
+<div class="paper r" style="--d:.45s;padding:24px 26px"><span class="pill">1 · Discoverable</span><p style="margin-top:14px;font-size:16.5px;color:#3a3350">Clear product identifiers, descriptions, source-of-truth attributes and structured information.</p><p style="margin-top:12px;font-size:13.5px;color:#6b6380">Evidence: accessible catalogue and accurate feeds.</p></div>
+<div class="paper r" style="--d:.55s;padding:24px 26px"><span class="pill">2 · Transaction-ready</span><p style="margin-top:14px;font-size:16.5px;color:#3a3350">Real-time price and availability, shipping, refund and customer-support processes.</p><p style="margin-top:12px;font-size:13.5px;color:#6b6380">Evidence: technical and merchant operating checklist.</p></div>
+<div class="paper r" style="--d:.65s;padding:24px 26px"><span class="pill">3 · Executable, where supported</span><p style="margin-top:14px;font-size:16.5px;color:#3a3350">Assess merchant platform, protocol support, payments, identity and UAE-specific availability.</p><p style="margin-top:12px;font-size:13.5px;color:#6b6380">No guaranteed agent-driven purchases or channel access.</p></div>
+</div>
+<div class="sowhat r" style="--d:.8s"><b>So what</b> Protocol support, regions and commercial terms are confirmed platform by platform before any implementation.</div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">8</span></div>
+</section>
+<section class="slide dark">
+<div class="kicker r">Where to start</div>
+<h2 class="r" style="--d:.1s">Choose the entry point based on business readiness</h2>
+<div class="grid g3">
+<div class="glass r" style="--d:0.25s;padding:26px 26px 14px"><div style="display:flex;align-items:center;gap:14px;margin-bottom:18px"><div class="icb"><svg class="ic"><use href="#i-search"></use></svg></div><h3>GEO</h3></div><div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--lav);margin-bottom:12px">Start here when</div><ul class="lst"><li style="font-size:15.5px;margin-bottom:12px"><span class="dot"><svg class="ic"><use href="#i-check"></use></svg></span>AI assistants already answer the category</li><li style="font-size:15.5px;margin-bottom:12px"><span class="dot"><svg class="ic"><use href="#i-check"></use></svg></span>The brand is rarely cited, or competitors are</li><li style="font-size:15.5px;margin-bottom:12px"><span class="dot"><svg class="ic"><use href="#i-check"></use></svg></span>There is owned content and data to structure</li></ul></div><div class="glass r" style="--d:0.4s;padding:26px 26px 14px"><div style="display:flex;align-items:center;gap:14px;margin-bottom:18px"><div class="icb"><svg class="ic"><use href="#i-mega"></use></svg></div><h3>Ads in AI</h3></div><div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--lav);margin-bottom:12px">Start here when</div><ul class="lst"><li style="font-size:15.5px;margin-bottom:12px"><span class="dot"><svg class="ic"><use href="#i-check"></use></svg></span>The market and category are open in Ads Manager</li><li style="font-size:15.5px;margin-bottom:12px"><span class="dot"><svg class="ic"><use href="#i-check"></use></svg></span>Landing pages and tracking are ready</li><li style="font-size:15.5px;margin-bottom:12px"><span class="dot"><svg class="ic"><use href="#i-check"></use></svg></span>There is budget for a measured test</li></ul></div><div class="glass r" style="--d:0.55s;padding:26px 26px 14px"><div style="display:flex;align-items:center;gap:14px;margin-bottom:18px"><div class="icb"><svg class="ic"><use href="#i-bag"></use></svg></div><h3>Agentic commerce</h3></div><div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--lav);margin-bottom:12px">Start here when</div><ul class="lst"><li style="font-size:15.5px;margin-bottom:12px"><span class="dot"><svg class="ic"><use href="#i-check"></use></svg></span>The catalogue is structured and complete</li><li style="font-size:15.5px;margin-bottom:12px"><span class="dot"><svg class="ic"><use href="#i-check"></use></svg></span>Checkout is live in the target market</li><li style="font-size:15.5px;margin-bottom:12px"><span class="dot"><svg class="ic"><use href="#i-check"></use></svg></span>A protocol is supported in that region</li></ul></div>
+</div>
+<div class="sowhat r" style="--d:.8s"><b>So what</b> Start with the lever whose conditions are already met. Build the rest in sequence.</div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">9</span></div>
+</section>
+<!-- 10 HOW WE WORK -->
+
+<section class="slide dark">
+<div class="kicker r">UAE market playbook</div>
+<h2 class="r" style="--d:.1s;max-width:1000px">Build for the UAE audience, not just a UAE-labelled deck</h2>
+<div class="grid g3">
+<div class="glass big3 r" style="--d:.25s;min-height:300px;padding:30px 28px"><div class="icb"><svg class="ic"><use href="#i-search"></use></svg></div><h3 style="margin-top:18px">EN + AR</h3><p style="margin-top:10px">Separate prompt cohorts, answer audits and landing-page assessment by language. Arabic localisation is a delivery workstream, not automatic translation.</p></div>
+<div class="glass big3 r" style="--d:.4s;min-height:300px;padding:30px 28px"><div class="icb"><svg class="ic"><use href="#i-target"></use></svg></div><h3 style="margin-top:18px">Sector entry</h3><p style="margin-top:10px">Priority sectors are set with the client after the diagnostic. Regulated categories, such as finance and health, go through eligibility and legal review first.</p></div>
+<div class="glass big3 r" style="--d:.55s;min-height:300px;padding:30px 28px"><div class="icb"><svg class="ic"><use href="#i-lock"></use></svg></div><h3 style="margin-top:18px">Geography + policy</h3><p style="margin-top:10px">Define UAE-wide vs Dubai vs Abu Dhabi scope, legal entity and billing, supported location controls, UAE privacy rules and sector approvals.</p></div>
+</div>
+<div class="sowhat r" style="--d:.7s"><b>So what</b> Localise the delivery, not only the language. Confirm eligibility before planning spend.</div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">10</span></div>
+</section>
+<section class="slide light">
+<div class="kicker r">How we work</div>
+<h2 class="r" style="--d:.1s">A 4-week diagnostic sets priorities and opens the pilot</h2>
+<div class="tl r" style="--d:.25s">
+<div class="tg">
+<div class="tn"><div class="nd">1</div><div class="cd paper"><div class="wk">Weeks 1–2</div><h3>Baseline</h3><p>AI share of voice against competitors and a map of the sources models cite.</p></div></div>
+<div class="tn"><div class="nd">2</div><div class="cd paper"><div class="wk">Week 3</div><h3>Priorities</h3><p>GEO roadmap, ads test design and agentic commerce readiness.</p></div></div>
+<div class="tn"><div class="nd">3</div><div class="cd paper"><div class="wk">Week 4</div><h3>Pilot plan</h3><p>Scope, KPIs, budget and governance, ready for a go decision.</p></div></div>
+<div class="tn last"><div class="nd"><svg class="ic" style="width:24px;height:24px;stroke-width:2.4"><use href="#i-spark"></use></svg></div><div class="cd paper" style="border:2px solid var(--purple)"><div class="wk">3 months</div><h3>Pilot</h3><p>GEO sprint, paid test where available, feed readiness.</p></div></div>
+</div>
+</div>
+<div class="sowhat r" style="--d:.6s"><b>Output</b> A go / no-go decision on the pilot, backed by a baseline.</div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">11</span></div>
+</section>
+<!-- 11 MEASUREMENT -->
+
+<section class="slide dark">
+<div class="kicker r">Measurement framework</div>
+<h2 class="r" style="--d:.1s">Measure what we can observe — and label what we infer</h2>
+<div style="display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:center">
+  <div class="stack">
+    <div class="layer r" style="--d:.25s;width:100%;background:linear-gradient(90deg,#6a00b3,#8a2be0)"><div class="icb"><svg class="ic"><use href="#i-search"></use></svg></div><div><b>1 · Visibility</b><span>Recommendation rate, citation rate, prompt-set share of voice, answer sentiment. Stable prompts, repeats, by engine, market and language.</span></div></div>
+    <div class="layer r" style="--d:.4s;width:92%;background:linear-gradient(90deg,#A100FF,#C14DFF)"><div class="icb"><svg class="ic"><use href="#i-cursor"></use></svg></div><div><b>2 · Acquisition</b><span>AI referrer sessions, tagged paid clicks, qualified leads and CRM outcomes</span></div></div>
+    <div class="layer r" style="--d:.55s;width:84%;background:linear-gradient(90deg,#E04DD0,#FF50A0)"><div class="icb"><svg class="ic"><use href="#i-target"></use></svg></div><div><b>3 · Business impact</b><span>Lead quality and incremental margin, assessed against spend and fees</span></div></div>
+  </div>
+  <div class="glass r" style="--d:.7s;padding:26px"><span class="pill pk">The limit</span><p style="margin-top:14px;font-size:17px;color:#fff">GA4 referral tracking is incomplete, so we report limitations. Causal lift is claimed only when the experiment design allows it.</p></div>
+</div>
+<div class="sowhat r" style="--d:.8s"><b>So what</b> Agree KPIs and holdouts before the spend, not after.</div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">12</span></div>
+</section>
+<section class="slide light">
+<div class="kicker r">Business case</div>
+<h2 class="r" style="--d:.1s;max-width:900px">A transparent business case — no double counting</h2>
+<div class="flow r" style="--d:.25s">
+  <div class="node paper"><svg class="ic" style="color:var(--purple)"><use href="#i-data"></use></svg><b>Baseline</b><span>Volume, lead-to-sale rate, margin, attribution coverage. Client inputs, source and timeframe recorded.</span></div><div class="link"></div>
+  <div class="node paper"><svg class="ic" style="color:var(--purple)"><use href="#i-layers"></use></svg><b>Scenario</b><span>Low, base and high cases by initiative and cost, including media and implementation.</span></div><div class="link"></div>
+  <div class="node hl"><svg class="ic"><use href="#i-chart"></use></svg><b>Decision</b><span>Net contribution against agency, technology, implementation and media costs. Go, adjust or stop after the pilot readout.</span></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 380px;gap:26px;margin-top:22px">
+  <div class="paper chart r" style="--d:.45s">
+    <svg viewBox="0 0 640 190" width="100%" height="190"><defs><linearGradient id="ar" x1="0" x2="1"><stop offset="0" stop-color="#A100FF"/><stop offset="1" stop-color="#FF50A0"/></linearGradient></defs>
+      <path d="M40 10V160H620" stroke="#cfc4e0" fill="none" stroke-width="1.5"/>
+      <path d="M40 130 C200 128 340 124 620 118" stroke="#9a90b0" stroke-width="3" fill="none" stroke-dasharray="7 6"/>
+      <path d="M40 155 C200 150 300 120 420 80 S560 25 620 14" stroke="url(#ar)" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <circle cx="338" cy="105" r="8" fill="#fff" stroke="#A100FF" stroke-width="4"/>
+      <text x="352" y="150" font-size="13" fill="#3a3350" font-family="Arial">Break-even: to be modelled</text>
+      <text x="48" y="182" font-size="12" fill="#8a819f" font-family="Arial">Time</text>
+      <text x="590" y="108" font-size="12" fill="#6b6380" font-family="Arial" text-anchor="end">Cumulative cost</text>
+      <text x="590" y="16" font-size="12" fill="#A100FF" font-family="Arial" font-weight="700" text-anchor="end">Cumulative value</text></svg>
+    <div class="note" style="margin-top:4px">Schematic shape only. Illustrative assumptions, not performance guarantees.</div></div>
+  <div class="paper r" style="--d:.55s;padding:22px 24px"><span class="pill pk">The rule</span><p style="margin-top:14px;font-size:17px;color:#3a3350">Do not add leads, sessions and sales as if they were independent monetary benefits.</p></div>
+</div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">13</span></div>
+</section>
+<section class="slide dark">
+<div class="kicker r">Delivery model</div>
+<h2 class="r" style="--d:.1s">One accountable team, defined responsibilities</h2>
+<div class="grid g3">
+<div class="glass big3 r" style="--d:.25s;min-height:300px;padding:30px 28px"><div class="icb"><svg class="ic"><use href="#i-chart"></use></svg></div><h3 style="margin-top:18px">Strategy + measurement</h3><p style="margin-top:10px">Engagement lead, performance strategist and analyst own hypotheses, scope and reporting.</p><p style="margin-top:14px;font-size:14px;color:#f2caff">Weekly decisions; signed baseline definitions.</p></div>
+<div class="glass big3 r" style="--d:.4s;min-height:300px;padding:30px 28px"><div class="icb"><svg class="ic"><use href="#i-data"></use></svg></div><h3 style="margin-top:18px">Content + technology</h3><p style="margin-top:10px">SEO and content, web engineering and commerce owners execute prioritised tasks.</p><p style="margin-top:14px;font-size:14px;color:#f2caff">Client approvals and developer capacity agreed at kickoff.</p></div>
+<div class="glass big3 r" style="--d:.55s;min-height:300px;padding:30px 28px"><div class="icb"><svg class="ic"><use href="#i-lock"></use></svg></div><h3 style="margin-top:18px">Governance</h3><p style="margin-top:10px">Advertising eligibility, privacy, regulatory review and platform documentation.</p><p style="margin-top:14px;font-size:14px;color:#f2caff">No implied platform partnership or guaranteed placements.</p></div>
+</div>
+<div class="sowhat r" style="--d:.7s"><b>One team</b> Accountable from baseline to pilot decision, on a single measurement framework.</div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">14</span></div>
+</section>
+<section class="slide dark">
+<div class="kicker r">Offer architecture</div>
+<h2 class="r" style="--d:.1s">Three modules. One measurable starting point.</h2>
+<div class="grid g3">
+<div class="glass step r" style="--d:.25s;min-height:300px"><div class="no grad">01</div><h3 style="margin-top:14px">Diagnostic</h3><p style="margin-top:10px;color:#fff;font-size:16px">4 weeks: visibility baseline, source map, audit and prioritised roadmap.</p><p style="margin-top:14px;font-size:14px;color:#f2caff">Fixed scope, quoted at kickoff.</p></div>
+<div class="glass step r" style="--d:.4s;min-height:300px"><div class="no grad">02</div><h3 style="margin-top:14px">Growth pilot</h3><p style="margin-top:10px;color:#fff;font-size:16px">12 weeks: GEO implementation oversight, repeat measurement, eligible AI ad tests.</p><p style="margin-top:14px;font-size:14px;color:#f2caff">Scoped from the diagnostic. Media budget separate.</p></div>
+<div class="glass step r" style="--d:.55s;min-height:300px"><div class="no grad">03</div><h3 style="margin-top:14px">Agentic commerce readiness</h3><p style="margin-top:10px;color:#fff;font-size:16px">Catalogue, integration, payments and policy gap analysis with an execution backlog.</p><p style="margin-top:14px;font-size:14px;color:#f2caff">Custom scope and quotation.</p></div>
+</div>
+<div class="sowhat r" style="--d:.75s"><b>So what</b> Commercial terms follow the diagnostic scope. Nothing is priced before the baseline exists.</div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">15</span></div>
+</section>
+<section class="slide dark">
+<div class="orb o1" style="opacity:.8"></div>
+<div class="kicker r">Next step</div>
+<h2 class="r" style="--d:.1s;font-size:50px;max-width:900px">Start with a four-week AI Visibility Diagnostic</h2>
+<div class="grid g3" style="margin-top:24px;max-width:1040px">
+  <div class="glass step r" style="--d:.3s;min-height:210px"><div class="no grad">1</div><h3 style="margin-top:10px">Week 1</h3><p style="margin-top:8px;color:#fff;font-size:15.5px">Discovery, data access, competitive set, bilingual prompt bank.</p><p style="margin-top:10px;font-size:13.5px;color:#f2caff">Output: agreed measurement design.</p></div>
+  <div class="glass step r" style="--d:.45s;min-height:210px"><div class="no grad">2</div><h3 style="margin-top:10px">Weeks 2–3</h3><p style="margin-top:8px;color:#fff;font-size:15.5px">Baseline, source mapping, GEO audit, ads feasibility, commerce readiness.</p><p style="margin-top:10px;font-size:13.5px;color:#f2caff">Output: evidence and prioritised backlog.</p></div>
+  <div class="glass step r" style="--d:.6s;min-height:210px"><div class="no grad">3</div><h3 style="margin-top:10px">Week 4</h3><p style="margin-top:8px;color:#fff;font-size:15.5px">Executive results, operating roadmap, investment case and pilot decision.</p><p style="margin-top:10px;font-size:13.5px;color:#f2caff">Output: decision pack for the pilot.</p></div>
+</div>
+<p class="r" style="--d:.75s;margin-top:22px;max-width:900px;font-size:16px;color:#e9dcff">Kickoff: confirm brand, markets, 3–6 competitors, categories, owners and access. Commercial scope is agreed before work begins.</p>
+<div class="r" style="--d:.85s;margin-top:22px"><span class="cta">Agree the kickoff <svg class="ic" style="width:22px;height:22px"><use href="#i-arrow"></use></svg></span></div>
+<div class="ft"><span>Found. Shown. Chosen. · UAE · Oct 2026</span><span class="pg">16</span></div>
+</section>
+<section class="slide light">
+<div class="kicker r">Appendix · Evidence</div>
+<h2 class="r" style="--d:.1s;max-width:1000px">What is verified — and what requires account validation</h2>
+<div class="grid g2" style="margin-top:6px">
+  <div class="paper r" style="--d:.25s;padding:22px 26px"><h3>Documented by OpenAI</h3><p style="margin-top:10px;font-size:15.5px;color:#3a3350">UAE self-service listing; ads separate from answers; image and multi-image formats; context hints; AED 65 daily minimum.</p><p style="margin-top:12px;font-size:12.5px;color:#6b6380">help.openai.com/en/articles/20001245-ads-manager-availability<br>help.openai.com/en/articles/20001212-creating-ads-for-chatgpt-ads<br>help.openai.com/en/articles/20001521-writing-context-hints-for-chatgpt-ads</p></div>
+  <div class="paper r" style="--d:.35s;padding:22px 26px"><h3>Secondary and academic sources</h3><p style="margin-top:10px;font-size:15.5px;color:#3a3350">ChatGPT weekly users (1.2B, reported from OpenAI DevDay, Sep 2026). AI referral share (~1%, Conductor benchmark). Click-through study (Pew Research, US, March 2025). GEO paper (arXiv 2311.09735, KDD 2024).</p></div>
+  <div class="paper r" style="--d:.45s;padding:22px 26px;grid-column:span 2"><h3>Validation gates</h3><p style="margin-top:10px;font-size:15.5px;color:#3a3350">Live availability table, account creation, UAE targeting granularity, language controls, category approval, integrations, conversion event support and checkout availability.</p></div>
+</div>
+<div class="ft"><span>Verification date: 29 October 2026 · Sources can change</span><span class="pg">17</span></div>
+</section>
+</div>
+
+<div id="hint">← → or click · F fullscreen · L language · P print to PDF</div>
+<script>if(location.search.includes('static'))document.body.classList.add('static');
+const slides=[...document.querySelectorAll('.slide')],stage=document.getElementById('stage'),bar=document.getElementById('bar');
+let i=Math.max(0,Math.min(slides.length-1,(parseInt(location.hash.slice(1))||1)-1));
+function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('active',k===i));bar.style.width=((i+1)/slides.length*100)+'%';history.replaceState(null,'',location.search+'#'+(i+1));}
+function fit(){stage.style.transform=`translate(-50%,-50%) scale(${Math.min(innerWidth/1280,innerHeight/720)})`}
+addEventListener('resize',fit);fit();show(i);
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(i+1)}else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();show(i-1)}else if(e.key==='Home')show(0);else if(e.key==='End')show(slides.length-1);else if(e.key.toLowerCase()==='p')print();});
+addEventListener('click',e=>{if(e.target.closest('button,a'))return;show(e.clientX>innerWidth/2?i+1:i-1)});
+const ES={"AI visibility · Go-to-market": "Visibilidad en IA · Salida al mercado", "Found.": "Encontrado.", "Shown.": "Mostrado.", "Chosen.": "Elegido.", "Three services to win the moment a customer asks AI what to buy, who to trust, or where to sign up.": "Tres servicios para ganar el momento en que un cliente le pregunta a la IA qué comprar, en quién confiar o dónde contratar.", "Be cited in AI answers": "Ser citado en las respuestas de IA", "Ads in AI": "Anuncios en IA", "Be shown in the moment": "Aparecer en el momento clave", "Be chosen by the agent": "Ser elegido por el agente", "October 2026": "Octubre 2026", "Executive summary": "Resumen ejecutivo", "Discovery is moving into AI assistants. Brands have three levers to act on it.": "El descubrimiento se está moviendo a los asistentes de IA. Las marcas tienen tres palancas para actuar.", "Situation": "Situación", "Complication": "Complicación", "Resolution": "Resolución", "ChatGPT, Gemini and AI Overviews answer the question before the user reaches your site.": "ChatGPT, Gemini y AI Overviews responden antes de que el usuario llegue a tu sitio.", "A brand missing from the answer loses consideration, and no current report shows it.": "Una marca ausente de la respuesta pierde consideración, y ningún informe actual lo muestra.", "Three linked services: GEO (organic), ads in AI (paid), agentic commerce (transaction).": "Tres servicios encadenados: GEO (orgánico), anuncios en IA (pago), agentic commerce (transacción).", "The ask": "La propuesta", "A 4-week AI visibility diagnostic: baseline, priorities and a pilot plan.": "Un diagnóstico de visibilidad en IA de 4 semanas: línea base, prioridades y plan de piloto.", "AI visibility": "Visibilidad en IA", "Users already ask AI before they search on Google": "Los usuarios ya le preguntan a la IA antes de buscar en Google", "weekly ChatGPT users, as reported by OpenAI": "usuarios semanales de ChatGPT, según OpenAI", "of Google searches now trigger an AI Overview": "de las búsquedas en Google ya activan un AI Overview", "Gartner forecast for traditional search volume in 2026": "Previsión de Gartner para el volumen de búsqueda tradicional en 2026", "Click-through rate on the results page": "Tasa de clics en la página de resultados", "Classic results": "Resultados clásicos", "When an AI Overview appears": "Cuando aparece un AI Overview", "To verify: secondary sources (blogs, vendors), no primary source confirmed. Directional.": "A verificar: fuentes secundarias (blogs, vendors), sin fuente primaria confirmada. Dato orientativo.", "AI shortlists a handful of brands. Is yours one of them?": "La IA preselecciona un puñado de marcas. ¿Está la tuya?", "Invisible in reporting": "Invisible en los informes", "GA4 and Search Console do not show mentions or citations inside LLMs.": "GA4 y Search Console no muestran menciones ni citas dentro de los LLM.", "Sources you do not control": "Fuentes que no controlas", "Reviews, forums, media and Wikipedia feed the answer, and sit outside the brand content plan.": "Reseñas, foros, medios y Wikipedia alimentan la respuesta y quedan fuera del plan de contenidos de la marca.", "Competitors already there": "Competidores que ya están", "Competitors and aggregators occupy the answers you want.": "Competidores y agregadores ocupan las respuestas que quieres.", "AI assistant": "Asistente de IA", "Which brand should I trust for this?": "¿En qué marca debería confiar para esto?", "Based on reviews and recent sources, these stand out:": "Según reseñas y fuentes recientes, destacan estas:", "Brand A": "Marca A", "Brand B": "Marca B", "Brand C": "Marca C", "3 sources": "3 fuentes", "2 sources": "2 fuentes", "Your brand: not mentioned": "Tu marca: no mencionada", "Illustrative": "Ilustrativo", "So what": "Implicación", "A measurement gap and lost consideration at the top of the funnel.": "Una brecha de medición y consideración perdida en la parte alta del embudo.", "The framework": "El marco", "Three services cover the full journey inside AI": "Tres servicios cubren todo el recorrido dentro de la IA", "Found": "Encontrado", "Shown": "Mostrado", "Chosen": "Elegido", "Appear and be cited in organic AI answers.": "Aparecer y ser citado en las respuestas orgánicas de la IA.", "Primary KPI": "KPI principal", "AI share of voice, citations": "Share of voice en IA, citas", "Pay for presence in high-intent moments.": "Pagar por presencia en momentos de alta intención.", "Let an agent compare and buy your product.": "Que un agente compare y compre tu producto.", "Orders or leads via agent": "Pedidos o leads vía agente", "Service 1 · GEO": "Servicio 1 · GEO", "GEO turns content and brand signals into citations inside AI answers": "GEO convierte contenido y señales de marca en citas dentro de las respuestas de IA", "Diagnose": "Diagnosticar", "Share of voice by prompt, engine, market and competitor (100–300 prompt set), plus a map of the domains LLMs cite in your category.": "Share of voice por prompt, motor, mercado y competidor (set de 100–300 prompts), más un mapa de los dominios que los LLM citan en tu categoría.", "Optimise": "Optimizar", "Content built for extraction: direct answers, FAQs, own data, schema. Technical access for AI crawlers and structured data.": "Contenido pensado para extracción: respuestas directas, FAQs, datos propios, schema. Acceso técnico para crawlers de IA y datos estructurados.", "Build and track": "Construir y medir", "Authority on the third-party sites models rely on. Monthly visibility dashboard plus AI referral traffic in GA4.": "Autoridad en los sitios de terceros en los que se apoyan los modelos. Dashboard mensual de visibilidad más tráfico referido de IA en GA4.", "After GEO": "Después de GEO", "Your brand is recommended for its clear product data and independent reviews.": "Tu marca se recomienda por sus datos de producto claros y sus reseñas independientes.", "Your brand": "Tu marca", "brand site · reviews · media": "sitio de marca · reseñas · medios", "[1] Brand site": "[1] Sitio de marca", "[2] Review platform": "[2] Plataforma de reseñas", "[3] Trade media": "[3] Medios del sector", "Evidence": "Evidencia", "The Princeton GEO study (2023) reports up to +40% visibility from simple tactics": "El estudio GEO de Princeton (2023) reporta hasta +40% de visibilidad con tácticas simples", ". Academic basis, not a promise.": ". Base académica, no una promesa.", "To verify against the primary paper.": "A verificar contra el paper original.", "Service 2 · Ads in AI": "Servicio 2 · Anuncios en IA", "Ads in ChatGPT open a high-intent channel with its own buying rules": "Los anuncios en ChatGPT abren un canal de alta intención con sus propias reglas de compra", "What is the best option for me?": "¿Cuál es la mejor opción para mí?", "Here are three things to compare before you decide…": "Tres cosas para comparar antes de decidir…", "Sponsored": "Patrocinado", "Your brand: clear headline": "Tu marca: titular claro", "One line on the offer, matched to the question.": "Una línea sobre la oferta, ajustada a la pregunta.", "Learn more": "Más información", "Illustrative · sponsored card below the answer": "Ilustrativo · tarjeta patrocinada bajo la respuesta", "Ads go live in the US; Free and Go tiers": "Los anuncios arrancan en EE.UU.; planes Free y Go", "Self-serve Ads Manager, CPM and CPC": "Ads Manager self-serve, CPM y CPC", "Reported CPM range": "Rango de CPM reportado", "Suggested starting CPC bid": "Puja inicial de CPC sugerida", "Spain is in the EU rollout": "España está en el despliegue europeo", "31 European markets from 24 Aug 2026. Booking via OpenAI Ads Solutions, agencies and partners; ads not personalised at launch. Confirm current status before committing budget.": "31 mercados europeos desde el 24 de agosto de 2026. Reserva vía OpenAI Ads Solutions, agencias y partners; anuncios sin personalización en el lanzamiento. Confirmar el estado actual antes de comprometer presupuesto.", "Premium-channel CPMs. Enter with a tight pilot and incrementality measurement.": "CPM de canal premium. Entrar con un piloto acotado y medición de incrementalidad.", "To verify: secondary sources (launch notes); current rollout status not confirmed.": "A verificar: fuentes secundarias (notas de lanzamiento); estado actual del despliegue sin confirmar.", "Service 3 · Agentic commerce": "Servicio 3 · Agentic commerce", "Agentic commerce needs a catalogue and checkout an agent can read": "Agentic commerce exige un catálogo y un checkout que un agente pueda leer", "Shopper": "Comprador", "States a need": "Expresa una necesidad", "AI agent": "Agente de IA", "Compares and decides": "Compara y decide", "Protocol layer": "Capa de protocolos", "Your catalogue and checkout": "Tu catálogo y checkout", "Where we work": "Donde trabajamos", "What changed": "Qué cambió", "ChatGPT pulled back Instant Checkout in March 2026 and focuses on discovery. Payment returns to the merchant site.": "ChatGPT retiró Instant Checkout en marzo de 2026 y se centra en el descubrimiento. El pago vuelve al sitio del comerciante.", "UCP checkout in AI Mode and Gemini, with the merchant as merchant of record. Shopify enabled Agentic Storefronts by default.": "Checkout UCP en AI Mode y Gemini, con el comerciante como merchant of record. Shopify activó Agentic Storefronts por defecto.", "Not interoperable yet": "Aún no interoperables", "ACP (OpenAI, Stripe) and UCP (Google) run side by side, alongside AP2, Visa TAP and Mastercard Agent Pay.": "ACP (OpenAI, Stripe) y UCP (Google) conviven, junto con AP2, Visa TAP y Mastercard Agent Pay.", "Catalogue and feed audit": "Auditoría de catálogo y feed", "Protocol roadmap": "Roadmap de protocolos", "Payments and identity": "Pagos e identidad", "Attribution policy": "Política de atribución", "Clean product data first. Pick the protocol after.": "Primero datos de producto limpios. El protocolo, después.", "To verify: secondary sources; dates differ between them.": "A verificar: fuentes secundarias; las fechas difieren entre ellas.", "Relevance by sector": "Relevancia por sector", "Each vertical starts with a different lever": "Cada vertical empieza por una palanca distinta", "Banking": "Banca", "(affluent / HNW)": "(afluente / HNW)", "Product comparisons, trust signals": "Comparativas de producto, señales de confianza", "Compliance-bound": "Condicionado por compliance", "Low in the short term": "Baja a corto plazo", "Energy and": "Energía y", "Tariffs, self-consumption, switching": "Tarifas, autoconsumo, cambio de compañía", "Lead generation, medium to high": "Generación de leads, media a alta", "Assisted sign-up": "Contratación asistida", "Retail and": "Retail y", "consumer": "consumo", "Product recommendation": "Recomendación de producto", "High-intent shopping moments": "Momentos de compra de alta intención", "Catalogue and feed ready": "Catálogo y feed listos", "Priority: three bars = start here, one bar = later. Initial view, to calibrate per account.": "Prioridad: tres barras = empezar aquí, una barra = más adelante. Vista inicial, a calibrar por cuenta.", "How we work": "Cómo trabajamos", "A 4-week diagnostic sets priorities and opens the pilot": "Un diagnóstico de 4 semanas fija prioridades y abre el piloto", "Weeks 1–2": "Semanas 1–2", "Baseline": "Línea base", "AI share of voice against competitors and a map of the sources models cite.": "Share of voice en IA frente a competidores y un mapa de las fuentes que citan los modelos.", "Week 3": "Semana 3", "Priorities": "Prioridades", "GEO roadmap, ads test design and agentic commerce readiness.": "Roadmap GEO, diseño del test de anuncios y preparación para agentic commerce.", "Week 4": "Semana 4", "Pilot plan": "Plan de piloto", "Scope, KPIs, budget and governance, ready for a go decision.": "Alcance, KPIs, presupuesto y gobernanza, listo para decidir el go.", "3 months": "3 meses", "Pilot": "Piloto", "GEO sprint, paid test where available, feed readiness.": "Sprint GEO, test pagado donde esté disponible, preparación del feed.", "Output": "Resultado", "A go / no-go decision on the pilot, backed by a baseline.": "Una decisión go / no-go sobre el piloto, respaldada por una línea base.", "Measurement": "Medición", "Without incrementality measurement, the investment cannot be defended": "Sin medición de incrementalidad, la inversión no se puede defender", "1 · Visibility": "1 · Visibilidad", "Share of voice, citations and sentiment by engine": "Share of voice, citas y sentimiento por motor", "2 · Traffic": "2 · Tráfico", "AI channel in GA4, AI referrers, destination landing pages": "Canal de IA en GA4, referrers de IA, landings de destino", "3 · Business": "3 · Negocio", "Assisted leads and sales; geo holdouts for paid": "Leads y ventas asistidas; geo holdouts para pago", "The limit": "El límite", "AI attribution is partial. We report in ranges, not false precision.": "La atribución de IA es parcial. Reportamos en rangos, sin falsa precisión.", "Agree KPIs and holdouts before the spend, not after.": "Acordar KPIs y holdouts antes del gasto, no después.", "The case is built on protected consideration and high-intent leads": "El caso se construye sobre consideración protegida y leads de alta intención", "AI traffic × conversion": "Tráfico de IA × conversión", "Paid leads at target CPA": "Leads pagados a CPA objetivo", "Sales via agent": "Ventas vía agente", "Incremental value": "Valor incremental", "vs pilot investment": "vs inversión del piloto", "Break-even: to be modelled": "Break-even: por modelar", "Time": "Tiempo", "Cumulative cost": "Coste acumulado", "Cumulative value": "Valor acumulado", "Schematic shape only. Numbers to be built per client.": "Forma esquemática. Las cifras se construyen por cliente.", "Inputs per client": "Inputs por cliente", "Current traffic and conversion": "Tráfico y conversión actuales", "CPA by channel": "CPA por canal", "Value of a lead or customer": "Valor de un lead o cliente", "Why one team": "Por qué un solo equipo", "One team across strategy, content, media and data": "Un equipo para estrategia, contenido, media y datos", "Media and performance": "Media y performance", "DV360, SEM and Meta already running in live accounts.": "DV360, SEM y Meta ya operando en cuentas activas.", "Content, data and tech": "Contenido, datos y tecnología", "The capabilities needed for feeds, structured data and checkout.": "Las capacidades necesarias para feeds, datos estructurados y checkout.", "Measurement and governance": "Medición y gobernanza", "The framework we already apply in Media & AI pilots.": "El marco que ya aplicamos en pilotos de Media & AI.", "One team": "Un equipo", "Accountable from baseline to pilot, on a single measurement framework.": "Responsable de la línea base al piloto, con un único marco de medición.", "Next steps": "Próximos pasos", "Let's start the diagnostic in the next two weeks": "Arranquemos el diagnóstico en las próximas dos semanas", "Confirm markets, competitors and priority categories": "Confirmar mercados, competidores y categorías prioritarias", "Access to GA4, Search Console and the product catalogue": "Acceso a GA4, Search Console y al catálogo de producto", "Kickoff and prompt set definition": "Kickoff y definición del set de prompts", "Book the kickoff": "Agendar el kickoff", "Owner: to be defined": "Responsable: por definir", "Appendix": "Apéndice", "Business case": "Caso de negocio", "To develop": "A desarrollar", "A1 · Prompt set methodology": "A1 · Metodología del set de prompts", "A2 · GEO technical checklist": "A2 · Checklist técnico GEO", "A3 · Protocols: ACP, UCP, AP2, TAP, Agent Pay": "A3 · Protocolos: ACP, UCP, AP2, TAP, Agent Pay", "A4 · AI ad platforms: ChatGPT, Google AI Mode, Perplexity, Copilot": "A4 · Plataformas de anuncios en IA: ChatGPT, Google AI Mode, Perplexity, Copilot", "A5 · Sources and verification date": "A5 · Fuentes y fecha de verificación", "Pending: primary source and date for every figure marked": "Pendiente: fuente primaria y fecha de cada cifra marcada", "October 2026 · UAE edition": "Octubre 2026 · Edición EAU", "weekly ChatGPT users (March 2026), as reported by OpenAI": "usuarios semanales de ChatGPT (marzo 2026), según OpenAI", "of Google searches trigger an AI Overview, depending on the tracker": "de las búsquedas en Google activan un AI Overview, según el tracker", "Gartner forecast (Feb 2024) for traditional search volume by 2026. A forecast, not a measurement": "Previsión de Gartner (feb 2024) para el volumen de búsqueda tradicional a 2026. Es una previsión, no una medición", "Click-through rate on the results page · Pew Research, US, March 2025": "Tasa de clics en la página de resultados · Pew Research, EE.UU., marzo 2025", "Secondary sources, checked 29 Oct 2026; directional. All figures are global or US data: a UAE baseline is built in the diagnostic.": "Fuentes secundarias, revisadas el 29-oct-2026; orientativo. Todas las cifras son globales o de EE.UU.: la línea base de EAU se construye en el diagnóstico.", "Ads go live in the US; Free and Go tiers, adults only": "Los anuncios arrancan en EE.UU.; planes Free y Go, solo adultos", "Self-serve Ads Manager opens in the US; CPM and CPC": "Ads Manager self-serve se abre en EE.UU.; CPM y CPC", "Reported CPM, down from ~$60 at launch": "CPM reportado, desde ~$60 en el lanzamiento", "UAE availability: to confirm": "Disponibilidad en EAU: por confirmar", "Agency sources report the UAE joined self-serve Ads Manager in Sep 2026 (Europe: 24 Aug). Not yet confirmed with OpenAI. Regulated categories are reportedly restricted or approved case by case. Verify in Ads Manager before committing budget.": "Fuentes de agencias reportan que EAU entró en Ads Manager self-serve en sep-2026 (Europa: 24-ago). Sin confirmar con OpenAI. Las categorías reguladas estarían restringidas o se aprueban caso a caso. Verificar en Ads Manager antes de comprometer presupuesto.", "Confirm UAE access first. Then a tight pilot with incrementality measurement.": "Primero confirmar el acceso en EAU. Después, un piloto acotado con medición de incrementalidad.", "UAE status from agency blogs, not OpenAI. Pricing is volatile; confirm in Ads Manager.": "Estado en EAU según blogs de agencias, no OpenAI. Los precios son volátiles; confirmar en Ads Manager.", "UCP checkout in AI Mode and Gemini, merchant as merchant of record, for select US merchants. Shopify Agentic Storefronts: on by default for US stores.": "Checkout UCP en AI Mode y Gemini, con el comerciante como merchant of record, para comerciantes seleccionados de EE.UU. Shopify Agentic Storefronts: activo por defecto en tiendas de EE.UU.", "Outside the US this is readiness work: clean product data first, protocol after.": "Fuera de EE.UU. es trabajo de preparación: primero datos de producto limpios, después el protocolo.", "Secondary sources; dates differ between them. Live checkout is US-first today.": "Fuentes secundarias; las fechas difieren entre ellas. Hoy el checkout en vivo es primero en EE.UU.", "Where to start": "Por dónde empezar", "The starting lever depends on three account conditions": "La palanca inicial depende de tres condiciones de la cuenta", "Start here when": "Empezar aquí cuando", "AI assistants already answer the category": "Los asistentes de IA ya responden sobre la categoría", "The brand is rarely cited, or competitors are": "La marca casi no se cita, o los competidores sí", "There is owned content and data to structure": "Hay contenido y datos propios que estructurar", "The market and category are open in Ads Manager": "El mercado y la categoría están abiertos en Ads Manager", "Landing pages and tracking are ready": "Landings y tracking están listos", "There is budget for a measured test": "Hay presupuesto para un test medido", "The catalogue is structured and complete": "El catálogo está estructurado y completo", "Checkout is live in the target market": "El checkout está activo en el mercado objetivo", "A protocol is supported in that region": "Un protocolo está soportado en esa región", "Start with the lever whose conditions are already met. Build the rest in sequence.": "Empezar por la palanca cuyas condiciones ya se cumplen. El resto, en secuencia.", "Sector view to be added once the audience and market are confirmed.": "La vista por sector se añade al confirmar audiencia y mercado.", "Figures checked 29 Oct 2026 against secondary sources. Primary source still pending for every figure marked": "Cifras revisadas el 29-oct-2026 con fuentes secundarias. Fuente primaria pendiente en cada cifra marcada", "A6 · UAE market: availability, advertising rules, Arabic and English prompts": "A6 · Mercado EAU: disponibilidad, normas publicitarias, prompts en árabe e inglés", "A practical growth offer for UAE brands navigating AI discovery, paid visibility and commerce readiness.": "Una oferta práctica de crecimiento para marcas de EAU que navegan el descubrimiento en IA, la visibilidad pagada y la preparación para el comercio.", "Found. Shown. Chosen. · UAE · Oct 2026": "Encontrado. Mostrado. Elegido. · EAU · Oct 2026", "The market signal": "La señal del mercado", "AI is becoming a new layer of customer discovery": "La IA se está convirtiendo en una nueva capa de descubrimiento del cliente", "weekly ChatGPT users, reported by OpenAI (Sep 2026)": "usuarios semanales de ChatGPT, según OpenAI (sep 2026)", "of Google searches in a 2025 US research panel produced an AI summary": "de las búsquedas en Google en un panel de investigación de EE.UU. de 2025 mostraron un resumen de IA", "of website traffic comes from AI referrals today: small volume, large influence": "del tráfico web llega hoy desde referencias de IA: poco volumen, mucha influencia", "Clicks on a classic result · Pew Research, US, March 2025": "Clics en un resultado clásico · Pew Research, EE.UU., marzo 2025", "Without an AI summary": "Sin resumen de IA", "With an AI summary": "Con resumen de IA", "Secondary sources. All figures are global or US data, not UAE audience estimates. Sources on the evidence slide.": "Fuentes secundarias. Todas las cifras son globales o de EE.UU., no estimaciones de audiencia de EAU. Fuentes en la slide de evidencia.", "Prompt-set visibility, recommendation and citation rates": "Visibilidad en el set de prompts, tasas de recomendación y de cita", "The Princeton GEO paper (arXiv 2311.09735, KDD 2024) reports up to +40% visibility from simple tactics. Academic basis, not a promise.": "El paper GEO de Princeton (arXiv 2311.09735, KDD 2024) reporta hasta +40% de visibilidad con tácticas simples. Base académica, no una promesa.", "Service 2 · Paid discovery": "Servicio 2 · Descubrimiento pagado", "ChatGPT Ads: a measurable channel, separate from organic recommendations": "ChatGPT Ads: un canal medible, separado de las recomendaciones orgánicas", "Listed in self-service Ads Manager, for UAE-established billing entities": "Listado en Ads Manager self-service, para entidades de facturación establecidas en EAU", "Daily minimum: a platform floor, not a test budget": "Mínimo diario: un piso de la plataforma, no un presupuesto de test", "Square images in multi-image format (open beta, 26 Oct 2026)": "Imágenes cuadradas en formato multi-imagen (beta abierta, 26-oct-2026)", "Objectives: reach, clicks or conversions; one destination URL": "Objetivos: alcance, clics o conversiones; una URL de destino", "Still to validate": "Por validar", "Account eligibility, UAE targeting granularity, category approval and language controls. Context hints are not exact-match keywords or hard targeting rules.": "Elegibilidad de la cuenta, granularidad de segmentación en EAU, aprobación de categoría y controles de idioma. Los context hints no son keywords exactas ni reglas de segmentación estrictas.", "Ads do not alter ChatGPT answers. Run paid and organic as separate levers, each with its own measurement.": "Los anuncios no alteran las respuestas de ChatGPT. Gestionar pago y orgánico como palancas separadas, cada una con su medición.", "Source: OpenAI help center, verified 29 Oct 2026. Rules, formats and availability can change.": "Fuente: help center de OpenAI, verificado el 29-oct-2026. Reglas, formatos y disponibilidad pueden cambiar.", "Prepare products for AI-led discovery before promising agent checkout": "Preparar los productos para el descubrimiento por IA antes de prometer checkout por agente", "1 · Discoverable": "1 · Descubrible", "Clear product identifiers, descriptions, source-of-truth attributes and structured information.": "Identificadores de producto claros, descripciones, atributos de fuente única de verdad e información estructurada.", "Evidence: accessible catalogue and accurate feeds.": "Evidencia: catálogo accesible y feeds precisos.", "2 · Transaction-ready": "2 · Listo para transaccionar", "Real-time price and availability, shipping, refund and customer-support processes.": "Precio y disponibilidad en tiempo real, envío, devoluciones y procesos de atención al cliente.", "Evidence: technical and merchant operating checklist.": "Evidencia: checklist técnico y operativo del comerciante.", "3 · Executable, where supported": "3 · Ejecutable, donde haya soporte", "Assess merchant platform, protocol support, payments, identity and UAE-specific availability.": "Evaluar plataforma del comerciante, soporte de protocolos, pagos, identidad y disponibilidad específica en EAU.", "No guaranteed agent-driven purchases or channel access.": "Sin garantía de compras por agente ni de acceso al canal.", "Protocol support, regions and commercial terms are confirmed platform by platform before any implementation.": "El soporte de protocolos, las regiones y los términos comerciales se confirman plataforma por plataforma antes de implementar.", "Choose the entry point based on business readiness": "Elegir el punto de entrada según la preparación del negocio", "UAE market playbook": "Playbook del mercado EAU", "Build for the UAE audience, not just a UAE-labelled deck": "Construir para la audiencia de EAU, no solo un deck con etiqueta EAU", "EN + AR": "EN + AR", "Separate prompt cohorts, answer audits and landing-page assessment by language. Arabic localisation is a delivery workstream, not automatic translation.": "Cohortes de prompts, auditorías de respuestas y evaluación de landings separadas por idioma. La localización al árabe es un frente de trabajo, no una traducción automática.", "Sector entry": "Entrada por sector", "Priority sectors are set with the client after the diagnostic. Regulated categories, such as finance and health, go through eligibility and legal review first.": "Los sectores prioritarios se definen con el cliente tras el diagnóstico. Las categorías reguladas, como finanzas y salud, pasan primero por revisión de elegibilidad y legal.", "Geography + policy": "Geografía + políticas", "Define UAE-wide vs Dubai vs Abu Dhabi scope, legal entity and billing, supported location controls, UAE privacy rules and sector approvals.": "Definir alcance EAU vs Dubái vs Abu Dabi, entidad legal y facturación, controles de ubicación disponibles, normas de privacidad de EAU y aprobaciones sectoriales.", "Localise the delivery, not only the language. Confirm eligibility before planning spend.": "Localizar la ejecución, no solo el idioma. Confirmar elegibilidad antes de planificar inversión.", "Measurement framework": "Marco de medición", "Measure what we can observe — and label what we infer": "Medir lo que podemos observar y etiquetar lo que inferimos", "Recommendation rate, citation rate, prompt-set share of voice, answer sentiment. Stable prompts, repeats, by engine, market and language.": "Tasa de recomendación, tasa de cita, share of voice del set de prompts, sentimiento de la respuesta. Prompts estables, repeticiones, por motor, mercado e idioma.", "2 · Acquisition": "2 · Adquisición", "AI referrer sessions, tagged paid clicks, qualified leads and CRM outcomes": "Sesiones con referrer de IA, clics pagados etiquetados, leads calificados y resultados en CRM", "3 · Business impact": "3 · Impacto en negocio", "Lead quality and incremental margin, assessed against spend and fees": "Calidad del lead y margen incremental, frente a inversión y fees", "GA4 referral tracking is incomplete, so we report limitations. Causal lift is claimed only when the experiment design allows it.": "El tracking de referrals en GA4 es incompleto, por eso reportamos las limitaciones. Solo se afirma impacto causal cuando el diseño del experimento lo permite.", "A transparent business case — no double counting": "Un caso de negocio transparente, sin doble conteo", "Volume, lead-to-sale rate, margin, attribution coverage. Client inputs, source and timeframe recorded.": "Volumen, tasa de lead a venta, margen, cobertura de atribución. Datos del cliente, con fuente y periodo registrados.", "Scenario": "Escenario", "Low, base and high cases by initiative and cost, including media and implementation.": "Casos bajo, base y alto por iniciativa y coste, incluyendo medios e implementación.", "Decision": "Decisión", "Net contribution against agency, technology, implementation and media costs. Go, adjust or stop after the pilot readout.": "Contribución neta frente a costes de agencia, tecnología, implementación y medios. Seguir, ajustar o parar tras el cierre del piloto.", "Schematic shape only. Illustrative assumptions, not performance guarantees.": "Solo forma esquemática. Supuestos ilustrativos, no garantías de rendimiento.", "The rule": "La regla", "Do not add leads, sessions and sales as if they were independent monetary benefits.": "No sumar leads, sesiones y ventas como si fueran beneficios monetarios independientes.", "Delivery model": "Modelo de entrega", "One accountable team, defined responsibilities": "Un equipo responsable, con responsabilidades definidas", "Strategy + measurement": "Estrategia + medición", "Engagement lead, performance strategist and analyst own hypotheses, scope and reporting.": "El lead del proyecto, el estratega de performance y el analista son dueños de las hipótesis, el alcance y el reporting.", "Weekly decisions; signed baseline definitions.": "Decisiones semanales; definiciones de línea base firmadas.", "Content + technology": "Contenido + tecnología", "SEO and content, web engineering and commerce owners execute prioritised tasks.": "SEO y contenido, ingeniería web y responsables de comercio ejecutan las tareas priorizadas.", "Client approvals and developer capacity agreed at kickoff.": "Aprobaciones del cliente y capacidad de desarrollo acordadas en el kickoff.", "Governance": "Gobernanza", "Advertising eligibility, privacy, regulatory review and platform documentation.": "Elegibilidad publicitaria, privacidad, revisión regulatoria y documentación de plataformas.", "No implied platform partnership or guaranteed placements.": "Sin alianza implícita con plataformas ni ubicaciones garantizadas.", "Accountable from baseline to pilot decision, on a single measurement framework.": "Responsables desde la línea base hasta la decisión del piloto, con un único marco de medición.", "Offer architecture": "Arquitectura de la oferta", "Three modules. One measurable starting point.": "Tres módulos. Un punto de partida medible.", "Diagnostic": "Diagnóstico", "4 weeks: visibility baseline, source map, audit and prioritised roadmap.": "4 semanas: línea base de visibilidad, mapa de fuentes, auditoría y roadmap priorizado.", "Fixed scope, quoted at kickoff.": "Alcance cerrado, cotizado en el kickoff.", "Growth pilot": "Piloto de crecimiento", "12 weeks: GEO implementation oversight, repeat measurement, eligible AI ad tests.": "12 semanas: supervisión de la implementación GEO, medición repetida, tests de anuncios en IA elegibles.", "Scoped from the diagnostic. Media budget separate.": "Alcance definido desde el diagnóstico. Presupuesto de medios aparte.", "Agentic commerce readiness": "Preparación para agentic commerce", "Catalogue, integration, payments and policy gap analysis with an execution backlog.": "Análisis de brechas de catálogo, integración, pagos y políticas, con backlog de ejecución.", "Custom scope and quotation.": "Alcance y cotización a medida.", "Commercial terms follow the diagnostic scope. Nothing is priced before the baseline exists.": "Los términos comerciales siguen el alcance del diagnóstico. Nada se cotiza antes de tener la línea base.", "Next step": "Próximo paso", "Start with a four-week AI Visibility Diagnostic": "Empezar con un diagnóstico de visibilidad en IA de cuatro semanas", "Week 1": "Semana 1", "Discovery, data access, competitive set, bilingual prompt bank.": "Descubrimiento, acceso a datos, set competitivo, banco de prompts bilingüe.", "Output: agreed measurement design.": "Resultado: diseño de medición acordado.", "Weeks 2–3": "Semanas 2–3", "Baseline, source mapping, GEO audit, ads feasibility, commerce readiness.": "Línea base, mapa de fuentes, auditoría GEO, viabilidad de ads, preparación de comercio.", "Output: evidence and prioritised backlog.": "Resultado: evidencia y backlog priorizado.", "Executive results, operating roadmap, investment case and pilot decision.": "Resultados ejecutivos, roadmap operativo, caso de inversión y decisión del piloto.", "Output: decision pack for the pilot.": "Resultado: pack de decisión para el piloto.", "Kickoff: confirm brand, markets, 3–6 competitors, categories, owners and access. Commercial scope is agreed before work begins.": "Kickoff: confirmar marca, mercados, 3–6 competidores, categorías, responsables y accesos. El alcance comercial se acuerda antes de empezar.", "Agree the kickoff": "Acordar el kickoff", "Appendix · Evidence": "Apéndice · Evidencia", "What is verified — and what requires account validation": "Qué está verificado y qué requiere validación en la cuenta", "Documented by OpenAI": "Documentado por OpenAI", "UAE self-service listing; ads separate from answers; image and multi-image formats; context hints; AED 65 daily minimum.": "Listado de EAU en self-service; anuncios separados de las respuestas; formatos de imagen y multi-imagen; context hints; mínimo diario de AED 65.", "Secondary and academic sources": "Fuentes secundarias y académicas", "ChatGPT weekly users (1.2B, reported from OpenAI DevDay, Sep 2026). AI referral share (~1%, Conductor benchmark). Click-through study (Pew Research, US, March 2025). GEO paper (arXiv 2311.09735, KDD 2024).": "Usuarios semanales de ChatGPT (1.200M, según el DevDay de OpenAI, sep 2026). Peso del tráfico de IA (~1%, benchmark de Conductor). Estudio de clics (Pew Research, EE.UU., marzo 2025). Paper GEO (arXiv 2311.09735, KDD 2024).", "Validation gates": "Puntos de validación", "Live availability table, account creation, UAE targeting granularity, language controls, category approval, integrations, conversion event support and checkout availability.": "Tabla de disponibilidad vigente, creación de cuenta, granularidad de segmentación en EAU, controles de idioma, aprobación de categoría, integraciones, soporte de eventos de conversión y disponibilidad de checkout.", "Verification date: 29 October 2026 · Sources can change": "Fecha de verificación: 29 de octubre de 2026 · Las fuentes pueden cambiar"};
+const TITLE={en:document.title,es:"Encontrado. Mostrado. Elegido. — Oferta de visibilidad en IA (EAU)"};
+const tn=[];(function(){const w=document.createTreeWalker(stage,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const k=n.nodeValue.trim();if(k&&ES[k]!==undefined)tn.push({n,en:n.nodeValue,k})}})();
+function setLang(l){tn.forEach(o=>{o.n.nodeValue=l==='es'?o.en.replace(o.k,ES[o.k]):o.en});document.documentElement.lang=l;document.title=TITLE[l];document.querySelectorAll('#lang button[data-l]').forEach(b=>b.classList.toggle('on',b.dataset.l===l));try{localStorage.setItem('deckLang',l)}catch(e){}}
+function exportPdf(){const t=document.title;document.title='Found-Shown-Chosen-UAE-'+document.documentElement.lang.toUpperCase();addEventListener('afterprint',()=>{document.title=t},{once:true});print()}
+document.getElementById('lang').addEventListener('click',e=>{e.stopPropagation();const b=e.target.closest('button');if(!b)return;if(b.id==='pdf')exportPdf();else setLang(b.dataset.l)});
+const qp=new URLSearchParams(location.search).get('lang');let sl=null;try{sl=localStorage.getItem('deckLang')}catch(e){}
+setLang(qp||sl||'en');
+addEventListener('keydown',e=>{if(e.key.toLowerCase()==='l')setLang(document.documentElement.lang==='es'?'en':'es')});</script>
+</body>
+</html>
